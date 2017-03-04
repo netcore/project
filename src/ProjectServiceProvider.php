@@ -18,7 +18,8 @@ class ProjectServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/clean-config.php' => config_path('netcore/clean-config.php')
+            __DIR__ . '/config/clean-config.php' => config_path('netcore/clean-config.php'),
+            __DIR__ . '/config/loaders.php' => config_path('netcore/loaders.php')
         ], 'config');
 
         if ($this->app->runningInConsole()) {

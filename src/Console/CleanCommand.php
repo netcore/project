@@ -1,6 +1,6 @@
 <?php
 
-namespace Netcore\Project\Commands;
+namespace Netcore\Project\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -50,6 +50,7 @@ class CleanCommand extends Command
         $startTime = microtime(true);
 
         $config = config('netcore.clean-config');
+        $loaders = config('netcore.loaders');
 
         if ($config['remigrate']) {
             $this->call('migrate:refresh');
@@ -103,6 +104,12 @@ class CleanCommand extends Command
 
         if ($config['clear']['routes']) {
             $this->call('route:clear');
+        }
+
+        if ($config['regenerate_ide_helpers'] && $loaders['idehelper']) {
+            $this->call('clear-compiled');
+            $this->call('optimize');
+            $this->call('ide-helper:generate');
         }
 
         $endTime = microtime(true);

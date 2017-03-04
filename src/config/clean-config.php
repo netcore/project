@@ -13,6 +13,11 @@ return [
     'seed_database' => true,
 
     /**
+     * Regenerate IDE helper file
+     */
+    'regenerate_ide_helpers' => false,
+
+    /**
      * Removables
      */
     'remove' => [

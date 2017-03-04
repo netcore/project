@@ -24,5 +24,10 @@
         "psr-4" : {
             "Netcore\\Project\\": "src/"
         }
+    },
+    "scripts" : {
+        "post-package-install" : [
+            "php artisan ide-helper:generate"
+        ]
     }
 }

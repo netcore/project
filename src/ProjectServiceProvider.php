@@ -2,8 +2,10 @@
 
 namespace Netcore\Project;
 
+use Barryvdh\Debugbar\ServiceProvider as DebugbarServiceProvider;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\ServiceProvider;
-use Netcore\Project\Commands\CleanCommand;
+use Netcore\Project\Console\CleanCommand;
 
 class ProjectServiceProvider extends ServiceProvider
 {
@@ -31,9 +33,18 @@ class ProjectServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__ . '/config/clean-config.php', 'netcore.clean-config'
-        );
+        // Merge config
+        $this->mergeConfigFrom(__DIR__ . '/config/clean-config.php', 'netcore.clean-config');
+        $this->mergeConfigFrom(__DIR__ . '/config/loaders.php', 'netcore.loaders');
+
+        // Register dependencies
+        if (config('netcore.loaders.debugbar')) {
+            $this->app->register(DebugbarServiceProvider::class);
+        }
+
+        if (config('netcore.loaders.idehelper')) {
+            $this->app->register(IdeHelperServiceProvider::class);
+        }
     }
 
 }

@@ -1,0 +1,28 @@
+{
+    "name": "netcore/project",
+    "type" : "package",
+    "description": "Netcore.lv development commands, helpers, generators for Laravel",
+    "keywords" : ["netcore","development","init","initial","commands"],
+    "homepage" : "http://netcore.lv",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Viktors Ņikiforovs",
+            "email": "viktors.nikiforovs@netcore.lv",
+            "role" : "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "laravel/framework": "5.*",
+        "barryvdh/laravel-ide-helper": "^2.3",
+        "barryvdh/laravel-debugbar" : "^2.3"
+
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Netcore\\Project\\": "src/"
+        }
+    }
+}
